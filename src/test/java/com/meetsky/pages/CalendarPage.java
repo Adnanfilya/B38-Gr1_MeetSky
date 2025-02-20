@@ -11,9 +11,6 @@ import java.util.List;
 // page_url = about:blank
 public class CalendarPage extends BasePage {
 
-    public CalendarPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
 
 
 }
