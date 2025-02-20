@@ -144,7 +144,6 @@ public class CalendarPage extends BasePage {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Calendar event is not displayed.");
         }
 
     }
@@ -171,7 +170,6 @@ public class CalendarPage extends BasePage {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Calendar event in month is not displayed.");
         }
     }
 
