@@ -12,12 +12,12 @@ import java.util.List;
 public class CalendarPage extends BasePage {
 
 
-    @FindBy(xpath = "//button[@aria-label='Actions']")
+    @FindBy(xpath = "//span[@class='material-design-icon view-day-icon']/..")
     public WebElement dateSelector;
-
 
     /**
      * Taken dates from feature file as list of String, then compared with actual element texts.
+     *
      * @param dates List of Dates
      */
     public void displayDateView(List<String> dates) {
@@ -37,6 +37,7 @@ public class CalendarPage extends BasePage {
      * Basic click function to open the views
      */
     public void clickView() {
+
         try {
             dateSelector.click();
         } catch (Exception e) {
