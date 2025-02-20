@@ -11,7 +11,6 @@ public class TasksPage extends BasePage {
     @FindBy(xpath = "//input[@id='newListInput']")
     public WebElement listName;
 
-
-    @FindBy(xpath = "(//input[@title='Save'])[2]")
-    public WebElement submitButton;
+//    @FindBy(xpath = "(//input[@type='button'])[2]")
+//    public WebElement submitButton;
 }
