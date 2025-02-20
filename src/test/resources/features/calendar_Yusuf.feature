@@ -1,4 +1,4 @@
-@244_calendar
+@243_calendar
 Feature: Calendar Module Functionality
   User Story: As a user, I should be able to see Daily-Weekly-Monthly calendar view and create a new event under the Calendar module
 
@@ -8,7 +8,7 @@ Feature: Calendar Module Functionality
     Given the user navigates to "Calendar" module
 
 
-  @244_calendar_AC01
+  @243_calendar_AC01
   Scenario: User can display daily calendar view
     When user clicks date selector button
     Then user should see the views below
