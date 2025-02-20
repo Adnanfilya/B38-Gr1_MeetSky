@@ -8,5 +8,5 @@ Feature: Calendar Module Functionality
 
   @244_calendar_AC01-TC01
   Scenario: As a user, I should be able to see Daily-Weekly-Monthly calendar view and create a new event under the Calendar module
-    Then the user navigates to "Calendar" module
+    And the user navigates to "Calendar" module
 

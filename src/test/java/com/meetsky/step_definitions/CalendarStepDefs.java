@@ -9,7 +9,7 @@ public class CalendarStepDefs extends BasePage {
 
     CalendarPage calendarPage = new CalendarPage();
 
-    @Then("the user navigates to {string} module")
+    @And("the user navigates to {string} module")
     public void theUserNavigatesToModule(String moduleName) {
 
         calendarPage.navigateTo(moduleName);
