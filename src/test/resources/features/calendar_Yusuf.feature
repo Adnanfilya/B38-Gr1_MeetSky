@@ -5,16 +5,22 @@ Feature: Calendar Module Functionality
   Background: User logins and lands on the Calendar page
     Given the user is on the login page
     Given the user logged in with username as "Employee81" and password as "Employee123"
-    Given the user navigates to "Calendar" module
+    Given the user goes to "Calendar" module
 
 
-  @243_calendar_AC01
-  Scenario: User can display daily calendar view
+  @243_calendar_AC01-TC01-02-03
+  Scenario Outline: User can display daily calendar view
     When user clicks date selector button
-    Then user should see the views below
-      | Day   |
-      | Week  |
-      | Month |
+    Then user should see the "<Daily>" "<Weekly>" and "<Monthly>" calendar view
+    Examples:
+      | Daily |  | Weekly |  | Monthly |
+      | Day   |  | Week   |  | Month   |
+
+    @243_calendar_AC01-TC04
+    Scenario: User can create a new event under the Calendar module and see it on the related day through the Monthly Calendar view
+      When user opens new event
+      Then user should see the "Project-Zed" under the Calendar Module
+      And user should see the "Project-Zed" on Monthly Calendar View
 
 
 
