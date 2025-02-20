@@ -16,6 +16,10 @@ public class CalendarPage extends BasePage {
     public WebElement dateSelector;
 
 
+    /**
+     * Taken dates from feature file as list of String, then compared with actual element texts.
+     * @param dates List of Dates
+     */
     public void displayDateView(List<String> dates) {
         for (String date : dates) {
 
@@ -25,11 +29,13 @@ public class CalendarPage extends BasePage {
 
             BrowserUtils.waitForVisibility(dateViewElement, 5);
 
-            // Elementin metnini al ve doğrula
             Assert.assertEquals("Date view failed", date, dateViewElement.getText());
         }
     }
 
+    /**
+     * Basic click function to open the views
+     */
     public void clickView() {
         try {
             dateSelector.click();
