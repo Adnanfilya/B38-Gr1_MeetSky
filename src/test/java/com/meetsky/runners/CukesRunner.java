@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/meetsky/step_definitions",
         dryRun = false,
-        tags = "@wip",
+        tags = "@244_calendar",
         publish = true //generating a report with public link
 )
 public class CukesRunner {}
