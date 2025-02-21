@@ -37,6 +37,12 @@ public class CalendarPage extends BasePage {
     @FindBy(css = "button[class='primary']")
     WebElement saveEventButton;
 
+    @FindBy(xpath = "//td[@data-time='00:00:00']")
+    WebElement scrollUp;
+
+    @FindBy(xpath = "//a[@class='fc-daygrid-more-link fc-more-link']")
+    WebElement moreMonth;
+
 
     /**
      * Basic click function to open the views
@@ -130,46 +136,61 @@ public class CalendarPage extends BasePage {
 
             saveEventButton.click();
 
-//            dateSelector.click();
-//
-//            dayView.click();
+            dateSelector.click();
+
+            dayView.click();
+
+            BrowserUtils.scrollToElement(scrollUp);
 
             String calendarEventName = "//div[@class='fc-event-title fc-sticky'][text()='" + eventName + "']";
 
             WebElement calendarEvent = Driver.getDriver().findElement(By.xpath(calendarEventName));
 
-            BrowserUtils.waitForVisibility(calendarEvent, 5);
-
             Assert.assertTrue(calendarEvent.isDisplayed());
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Couldnt find element!");
         }
 
     }
 
+    /**
+     * If element is flaky, i use this to switch month view.
+     */
+    public void navigateToCalendar() {
+        Driver.getDriver().get("https://qa.meetsky.net/index.php/apps/calendar/dayGridMonth/now");
+    }
+
+    /**
+     * Checking Month View of Calendar to see if our event is there or not.
+     * @param eventName comes from business layer
+     */
     public void checkEventOnMonthlyCalendarView(String eventName) {
 
-        BrowserUtils.waitForPageToLoad(3);
-
         try {
-            dateSelector.click();
 
-            BrowserUtils.waitForVisibility(monthView, 5);
-
+            //navigateToCalendar();
             monthView.click();
 
-            String calendarEventName = "//div[@class='fc-event-title fc-sticky'][text()='" + eventName + "']";
+            BrowserUtils.waitForPageToLoad(5);
+
+            if (moreMonth.isDisplayed()){
+                moreMonth.click();
+            }
+
+            String calendarEventName = "//div[@class='fc-daygrid-event-harness']//div[@class='fc-event-title'][text()='" + eventName + "']";
 
             WebElement calendarEvent = Driver.getDriver().findElement(By.xpath(calendarEventName));
 
-            BrowserUtils.waitForVisibility(calendarEvent, 5);
+            BrowserUtils.waitForVisibility(calendarEvent,5);
 
             Assert.assertTrue(calendarEvent.isDisplayed());
 
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Could not find Month element!");
         }
     }
 

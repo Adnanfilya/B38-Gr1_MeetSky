@@ -19,8 +19,8 @@ Feature: Calendar Module Functionality
     @243_calendar_AC01-TC04
     Scenario: User can create a new event under the Calendar module and see it on the related day through the Monthly Calendar view
       When user opens new event
-      Then user should see the "Project-Zed" under the Calendar Module
-      And user should see the "Project-Zed" on Monthly Calendar View
+      Then user should see the "Adroit" under the Calendar Module
+      And user should see the "Adroit" on Monthly Calendar View
 
 
 
