@@ -5,7 +5,7 @@ Feature: Calendar Module Functionality
   Background: User logins and lands on the Calendar page
     Given the user is on the login page
     Given the user logged in with username as "Employee81" and password as "Employee123"
-    Given the user goes to "Calendar" module
+    And the user navigates to "Calendar" module
 
 
   @243_calendar_AC01-TC01-02-03
@@ -16,11 +16,12 @@ Feature: Calendar Module Functionality
       | Daily |  | Weekly |  | Monthly |
       | Day   |  | Week   |  | Month   |
 
-    @243_calendar_AC01-TC04
+
+  @243_calendar_AC01-TC04
     Scenario: User can create a new event under the Calendar module and see it on the related day through the Monthly Calendar view
       When user opens new event
-      Then user should see the "Groovy" under the Calendar Module
-      And user should see the "Groovy" on Monthly Calendar View
+      Then user should see the "Selim" under the Calendar Module
+      And user should see the "Selim" on Monthly Calendar View
 
 
 
