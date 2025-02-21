@@ -40,6 +40,9 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "//td[@data-time='00:00:00']")
     WebElement scrollUp;
 
+    @FindBy(xpath = "//td[@data-time='23:00:00']")
+    WebElement scrollDown;
+
     @FindBy(xpath = "//a[@class='fc-daygrid-more-link fc-more-link']")
     WebElement moreMonth;
 
@@ -140,11 +143,18 @@ public class CalendarPage extends BasePage {
 
             dayView.click();
 
-            BrowserUtils.scrollToElement(scrollUp);
-
             String calendarEventName = "//div[@class='fc-event-title fc-sticky'][text()='" + eventName + "']";
 
             WebElement calendarEvent = Driver.getDriver().findElement(By.xpath(calendarEventName));
+
+            BrowserUtils.waitForPresenceOfElement(By.xpath(calendarEventName),3);
+
+            if (!calendarEvent.isDisplayed()){
+                BrowserUtils.scrollToElement(scrollUp);
+                BrowserUtils.waitForVisibility(calendarEvent,3);
+                BrowserUtils.scrollToElement(scrollDown);
+                BrowserUtils.waitForVisibility(calendarEvent,3);
+            }
 
             Assert.assertTrue(calendarEvent.isDisplayed());
 
