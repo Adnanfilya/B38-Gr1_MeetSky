@@ -11,6 +11,11 @@ public class TasksPage extends BasePage {
     @FindBy(xpath = "//input[@id='newListInput']")
     public WebElement listName;
 
-    @FindBy(xpath = "(//input[@type='button'])[9]")
+    @FindBy(xpath = "(//input[@class='action icon-checkmark'])[last()]")
     public WebElement submitButton;
+
+    @FindBy(xpath = "//div[@class='draggable-container']")
+    public WebElement controlPanel;
+
+
 }

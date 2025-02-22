@@ -7,36 +7,40 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class TasksStepDefs {
 
     TasksPage tasksPage = new TasksPage();
 
-    @And("the user navigates to {string} module")
-    public void the_user_navigates_to_module(String moduleName) {
-        tasksPage.navigateTo(moduleName);
-    }
-
     @When("user clicks Add list")
     public void user_clicks_add_list() {
-        BrowserUtils.sleep(2);
         tasksPage.addList.click();
+        BrowserUtils.waitFor(2);
 
     }
 
     @When("user writes {string} for the list and clicks submit button")
     public void user_writes_the_list_and_clicks_submit_button(String listName) {
-        tasksPage.listName.sendKeys(listName + Keys.ENTER);
+        tasksPage.listName.sendKeys(listName);
+        tasksPage.submitButton.click();
 
     }
 
     @Then("user should see the {string} list under Tasks label")
-    public void user_should_see_the_list_under_tasks_label(String string) {
-//div[@class='draggable-container']/li[@calendar-id='tasks']
+    public void user_should_see_the_list_under_tasks_label(String expectedStr) {
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.urlContains(expectedStr.toLowerCase()));
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedStr.toLowerCase()));
 
     }
 
