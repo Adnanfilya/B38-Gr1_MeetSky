@@ -53,7 +53,7 @@ public class TasksPage extends BasePage {
     public WebElement numberOfAllTasks;
 
     public void starIcon(String icon){
-        String locator= "//span[.='" + icon + "']/../../following-sibling::div[1]//span[@class='material-design-icon star-icon'])[1]";
+        String locator= "(//span[.='" + icon + "']/../../following-sibling::div[1]//span[@class='material-design-icon star-icon'])[1]";
         WebElement element =  Driver.getDriver().findElement(By.xpath(locator));
         element.click();
     }

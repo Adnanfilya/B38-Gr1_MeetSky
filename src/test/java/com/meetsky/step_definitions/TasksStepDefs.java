@@ -25,6 +25,8 @@ public class TasksStepDefs {
     public void user_clicks_add_list() {
         tasksPage.addList.click();
         BrowserUtils.waitFor(2);
+        //WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        //wait.until(ExpectedConditions.urlContains("tasks/#"));
     }
 
     @When("user writes {string} for the list and clicks submit button")
@@ -70,12 +72,16 @@ public class TasksStepDefs {
 
     @When("user clicks the star icon of {string} task")
     public void user_clicks_the_star_icon_of_task(String importantTask) {
+        tasksPage.completedTasks.click();
+        tasksPage.checkbox(importantTask);
         tasksPage.starIcon(importantTask);
+        BrowserUtils.waitForVisibility(tasksPage.importantTasks, 5);
     }
 
     @Then("user should see {string} in important tasks")
     public void user_should_see_in_important_tasks(String expectedTask) {
         tasksPage.importantTasks.click();
+
         Assert.assertEquals(expectedTask, tasksPage.taskControl(expectedTask).getText());
     }
 
