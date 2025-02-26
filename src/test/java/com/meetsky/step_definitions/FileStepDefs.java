@@ -57,10 +57,9 @@ public class FileStepDefs {
     }
 
     @Given("the user clicks on the three dots menu next to the file {string}")
-    public void the_user_clicks_on_the_three_dots_menu_next_to_the_file(String string) {
+    public void the_user_clicks_on_the_three_dots_menu_next_to_the_file(String fileName) {
 
-        int lastindex = filePage.fileMoreButtons.size() - 1;
-        filePage.fileMoreButtons.get(lastindex).click();
+        filePage.clickThreeDotsOfGivenFolderOrFileName(fileName);
     }
 
     @Given("the user selects the {string} option")
