@@ -74,7 +74,22 @@ public class FilesPage extends BasePage{
         }
         return isFileOnTheList;
     }
+/*
+# TASK (DYNAMIC LOCATOR PRACTICE):
 
+    - Write a method which takes one String parameter as the "fileName"
+      and clicks on given file's three dot button on the files/folders list
+      under Files Module page
+ */
+    public void clickThreeDotsOfGivenFolderOrFileName(String fileName){
+
+        for (int i = 0; i < fileNamesList.size(); i++) {
+            if (fileNamesList.get(i).getText().contains(fileName)) {
+                fileMoreButtons.get(i).click();
+                break;
+            }
+        }
+    }
 
 
 }

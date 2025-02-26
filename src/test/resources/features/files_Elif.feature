@@ -62,3 +62,11 @@ Feature: Upload a file, move or delete any selected file under the Files module
     And the user refresh the page
     Then the total number of the file is decreased one
 
+  @B3801-240_files_AC4_TC4
+  Scenario: Verify that the count updates correctly after deleting folder.
+
+    Then the total number of files and folders should be displayed under the files list table
+    And the user clicks on the three dots menu next to the folder "New folder"
+    And the user selects the "Delete" option
+    And the user refresh the page
+    Then the total number of the folder is decreased one

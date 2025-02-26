@@ -131,4 +131,19 @@ public class FileStepDefs {
         System.out.println("numberOfFolders = " + numberOfFolders);
         Assert.assertEquals(oldNumberOfFolders+1, numberOfFolders);
     }
+
+    @And("the user clicks on the three dots menu next to the folder {string}")
+    public void theUserClicksOnTheThreeDotsMenuNextToTheFolder(String folderName) {
+        filePage.clickThreeDotsOfGivenFolderOrFileName(folderName);
+    }
+
+    @Then("the total number of the folder is decreased one")
+    public void theTotalNumberOfTheFolderIsDecreasedOne() {
+        int oldNumberOfFolders = numberOfFolders;
+        BrowserUtils.waitForVisibility(filePage.folderInfoText,2);
+        String numberOfFolderText = filePage.folderInfoText.getText();
+        numberOfFolders = Integer.parseInt(numberOfFolderText.replaceAll("[^0-9]", ""));
+        System.out.println("numberOfFolders = " + numberOfFolders);
+        Assert.assertEquals(oldNumberOfFolders-1, numberOfFolders);
+    }
 }
