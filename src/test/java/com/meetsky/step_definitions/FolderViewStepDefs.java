@@ -2,10 +2,12 @@ package com.meetsky.step_definitions;
 
 import com.meetsky.pages.FilesPage;
 import com.meetsky.utilities.BrowserUtils;
+import com.meetsky.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class FolderViewStepDefs {
@@ -22,6 +24,7 @@ public class FolderViewStepDefs {
         BrowserUtils.waitFor(2);
         filesPage.selectAllCheckBox.click();
     }
+
     @Then("verify user should see all checkboxes as selected")
     public void verify_use_should_see_all_checkboxes_as_selected() {
         for (WebElement each : filesPage.allCheckBoxes) {
@@ -36,11 +39,11 @@ public class FolderViewStepDefs {
         System.out.println("totalNumbers = " + totalNumbers);
 
         // actual number values => I get from the string on UI which appeared above the list of folders/files
-        String actualNumberOfFolders = totalNumbers.substring(0,totalNumbers.indexOf(" "));
+        String actualNumberOfFolders = totalNumbers.substring(0, totalNumbers.indexOf(" "));
         System.out.println("actualNumberOfFolders = " + actualNumberOfFolders);
 
         int emptySpaceBeforeFilesNumber = totalNumbers.indexOf(" ", totalNumbers.indexOf("and"));
-        String actualNumberOfFiles = totalNumbers.substring(emptySpaceBeforeFilesNumber+1, totalNumbers.lastIndexOf(" "));
+        String actualNumberOfFiles = totalNumbers.substring(emptySpaceBeforeFilesNumber + 1, totalNumbers.lastIndexOf(" "));
         System.out.println("actualNumberOfFiles = " + actualNumberOfFiles);
 
         // expected number values => I get from the HTML structure of Files page according to web elements' attribute
@@ -54,6 +57,34 @@ public class FolderViewStepDefs {
         Assert.assertEquals(Integer.parseInt(actualNumberOfFolders), expectedNumberOfFolders);
         Assert.assertEquals(Integer.parseInt(actualNumberOfFiles), expectedNumberOfFiles);
 
-        
+
+    }
+
+    @When("I click on the three-dot button of the file named {string}")
+    public void iClickOnTheThreeDotButtonOfTheFileNamed(String fileName) {
+
+        String fileXpath = "//span[@class='innernametext'][text()='" + fileName + "']/../following-sibling::span/a[last()]";
+        WebElement threeDotButton = Driver.getDriver().findElement(By.xpath(fileXpath));
+        threeDotButton.click();
+    }
+
+    @Then("the file options menu should be displayed")
+    public void theFileOptionsMenuShouldBeDisplayed() {
+
+        WebElement scrollDown = Driver.getDriver().findElement(By.xpath("//td[@class='filesummary']"));
+
+        String menu = "//div[@class='fileActionsMenu popovermenu bubble open menu']";
+        WebElement menuPopUp = Driver.getDriver().findElement(By.xpath(menu));
+
+        BrowserUtils.waitForPresenceOfElement(By.xpath(menu),3);
+
+        if (!menuPopUp.isDisplayed()){
+
+            BrowserUtils.scrollToElement(scrollDown);
+            BrowserUtils.waitForVisibility(menuPopUp,3);
+
+        }
+
+        Assert.assertTrue(menuPopUp.isDisplayed());
     }
 }
