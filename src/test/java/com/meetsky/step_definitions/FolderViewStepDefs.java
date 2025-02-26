@@ -3,6 +3,7 @@ package com.meetsky.step_definitions;
 import com.meetsky.pages.FilesPage;
 import com.meetsky.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -54,6 +55,12 @@ public class FolderViewStepDefs {
         Assert.assertEquals(Integer.parseInt(actualNumberOfFolders), expectedNumberOfFolders);
         Assert.assertEquals(Integer.parseInt(actualNumberOfFiles), expectedNumberOfFiles);
 
-        
     }
+
+    @Given("user clicks on {string}'s three dot button on the files-folders list")
+    public void user_clicks_on_s_three_dot_button_on_the_files_folders_list(String file) {
+        filesPage.dynamicLocater(file).click();
+    }
+
+
 }
