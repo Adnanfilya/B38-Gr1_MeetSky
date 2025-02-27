@@ -1,6 +1,5 @@
 package com.meetsky.pages;
 
-import com.meetsky.utilities.BrowserUtils;
 import com.meetsky.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,6 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static com.meetsky.utilities.BrowserUtils.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -81,7 +81,7 @@ public class CalendarPage extends BasePage {
     public CalendarPage compareDates(String day, String week, String month) {
 
         try {
-            BrowserUtils.waitForVisibility(dateSelector, 2);
+            waitForVisibility(dateSelector, 2);
 
             Map<String, String> actualView = new LinkedHashMap<>();
 
@@ -122,7 +122,7 @@ public class CalendarPage extends BasePage {
         for (int i = 0; i < views.size(); i++) {
             try {
                 views.get(i).click();
-                BrowserUtils.waitForPresenceOfElement(By.xpath(xpaths.get(i)), 10);
+                waitForPresenceOfElement(By.xpath(xpaths.get(i)), 10);
                 Assert.assertTrue(Driver.getDriver().findElement(By.xpath(xpaths.get(i))).isDisplayed());
             } catch (NoSuchElementException | TimeoutException e) {
                 e.printStackTrace();
@@ -147,13 +147,13 @@ public class CalendarPage extends BasePage {
 
             WebElement calendarEvent = Driver.getDriver().findElement(By.xpath(calendarEventName));
 
-            BrowserUtils.waitForPresenceOfElement(By.xpath(calendarEventName),3);
+            waitForPresenceOfElement(By.xpath(calendarEventName),3);
 
             if (!calendarEvent.isDisplayed()){
-                BrowserUtils.scrollToElement(scrollUp);
-                BrowserUtils.waitForVisibility(calendarEvent,3);
-                BrowserUtils.scrollToElement(scrollDown);
-                BrowserUtils.waitForVisibility(calendarEvent,3);
+                scrollToElement(scrollUp);
+                waitForVisibility(calendarEvent,3);
+                scrollToElement(scrollDown);
+                waitForVisibility(calendarEvent,3);
             }
 
             Assert.assertTrue(calendarEvent.isDisplayed());
@@ -183,7 +183,7 @@ public class CalendarPage extends BasePage {
             //navigateToCalendar();
             monthView.click();
 
-            BrowserUtils.waitForPageToLoad(5);
+            waitForPageToLoad(5);
 
             if (moreMonth.isDisplayed()){
                 moreMonth.click();
@@ -193,7 +193,7 @@ public class CalendarPage extends BasePage {
 
             WebElement calendarEvent = Driver.getDriver().findElement(By.xpath(calendarEventName));
 
-            BrowserUtils.waitForVisibility(calendarEvent,5);
+            waitForVisibility(calendarEvent,5);
 
             Assert.assertTrue(calendarEvent.isDisplayed());
 
