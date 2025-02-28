@@ -64,7 +64,7 @@ public class DashboardStepDefs {
     public void userUnselectAWidgetFromTheList()  {
 
         for (WebElement widgets : dashboardPage.widgets2){
-            BrowserUtils.sleep(1);
+            BrowserUtils.sleep(2);
             widgets.click();}
         System.out.println("Widget list unselected");}
 

@@ -22,13 +22,13 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app-dashboard\"]/div[2]/a")
     public WebElement customizeBtn;
 
-    @FindBy(xpath = "/html/body/div[3]/div/div[1]/div")
+    @FindBy(xpath = "//*[@id=\"body-user\"]/div[7]/div[2]/div")
     public WebElement widgtPanel;
 
     @FindBy(xpath = "//label[contains(@class,'draggable')]")
     public List<WebElement> widgets2;
 
-    @FindBy(xpath = "//label[@data-v-af526754]")
+    @FindBy(xpath = "//*[@id=\"body-user\"]/div[7]/div[2]/div/div/ol[2]/li")
     public List<WebElement> widgets1;
 
     @FindBy(xpath = "//*[@id=\"app-dashboard\"]/ul/div")
