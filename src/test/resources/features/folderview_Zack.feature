@@ -27,4 +27,9 @@ Feature: Folder View Functionality
     When user clicks on the select all checkbox
     Then verify user should see all checkboxes as selected
 
+  @B3801-247_folderview_AC04-TC03
+  Scenario: Click the three-dot button for a given file in the Files Module
+    When I click on the three-dot button of the file named "Readme"
+    Then the file options menu should be displayed
+
 
