@@ -23,11 +23,6 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "//tr[@data-type='file']")
     public List<WebElement> files;
 
-
-
-    @FindBy(xpath = "(//li[@data-id='files'])[1]")
-    public WebElement fileIconOnTop;
-
     @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement fileAddIcon;
 
@@ -50,8 +45,6 @@ public class FilesPage extends BasePage{
     public  List<WebElement> fileMoreButtons;
 
     @FindBy(xpath = "//a[@class='menuitem action action-delete permanent']")
-    // file-> //a[@class='menu-option option-delete']
-    // folder //a[@class='menuitem action action-delete permanent']
     public WebElement fileDeleteButton;
 
     @FindBy(xpath = "//span[starts-with(@class, 'dirinfo')]")
@@ -63,6 +56,16 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "//div[@class='tooltip-inner']")
     public WebElement folderAlreadyExistsMessage;
 
+    /**
+     * Checks if a given file or folder is present in the list
+     *
+     * @param fileNameList the list of file or folder elements
+     * @param fileName     the name of the file or folder to check for
+     * @return true if the file or folder is found, false otherwise
+     *
+     * Iterates through the list of elements, prints each name, and returns true
+     * if a match is found. The loop stops after the first match.
+     */
     public boolean isFileOnTheList (List<WebElement> fileNameList, String fileName){
         boolean isFileOnTheList = false;
         for (WebElement name : fileNameList) {
@@ -74,13 +77,14 @@ public class FilesPage extends BasePage{
         }
         return isFileOnTheList;
     }
-/*
-# TASK (DYNAMIC LOCATOR PRACTICE):
-
-    - Write a method which takes one String parameter as the "fileName"
-      and clicks on given file's three dot button on the files/folders list
-      under Files Module page
- */
+    /**
+     * Clicks the three-dot button of a given folder or file
+     *
+     * @param fileName the name of the file or folder to locate and click the three-dot button for
+     *
+     * Iterates through the list of file names, finds the matching file/folder,
+     * and clicks the corresponding three-dot button. The loop breaks after the first match.
+     */
     public void clickThreeDotsOfGivenFolderOrFileName(String fileName){
 
         for (int i = 0; i < fileNamesList.size(); i++) {
